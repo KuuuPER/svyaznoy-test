@@ -4,11 +4,9 @@ using System.Text;
 
 namespace SvyaznoyTestProject.Models
 {
-    class DoorSensor
+    enum DoorsStates: byte
     {
-        public void DetectMove()
-        {
-
-        }
+        Closed = 0,
+        Opened = 1
     }
 }

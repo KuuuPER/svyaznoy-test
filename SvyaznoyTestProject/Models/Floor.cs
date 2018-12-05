@@ -1,5 +1,4 @@
-﻿using SvyaznoyTestProject.Models.Buttons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,14 +6,16 @@ namespace SvyaznoyTestProject.Models
 {
     class Floor
     {
-        public Floor()
-        {
-            this.Buttons = new Dictionary<ElevatorCallDirections, IButton>(2);
+        private FloorPanel _panel;
 
-            this.Buttons.Add(ElevatorCallDirections.Up, new ElevatorCallButton());
-            this.Buttons.Add(ElevatorCallDirections.Down, new ElevatorCallButton());
+        public Floor(int floorNum, FloorPanel panel)
+        {
+            _panel = panel;
+            Num = floorNum;
         }
 
-        public Dictionary<ElevatorCallDirections, IButton> Buttons { get; set; }
+        public int Num { get; }
+
+        public DoorsStates DoorsState { get; private set; }
     }
 }

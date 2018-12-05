@@ -8,9 +8,13 @@ namespace SvyaznoyTestProject.Models
     {
         public PressureSensor()
         {
-
         }
 
         public ushort Value { get; private set; }
+
+        public void AddWeight(ushort weight)
+        {
+            Value += weight;
+        }
     }
 }

@@ -6,16 +6,16 @@ namespace SvyaznoyTestProject.Models.Buttons
 {
     abstract class BaseButton : IButton
     {
-        public bool IsPushed { get; protected set; }
+        private bool _pushed;
 
         public virtual void Push()
         {
-            this.IsPushed = true;
+            this._pushed = true;
         }
 
         public virtual void SetPushedFalse()
         {
-            this.IsPushed = false;
+            this._pushed = false;
         }
     }
 }
