@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SvyaznoyTestProject.Models.EventArgs
+namespace SvyaznoyTestProject.Models.ElevatorEventArgs
 {
-    class ElevatorCallEventArgs: System.EventArgs
+    class ElevatorCallEventArgs: EventArgs
     {
         public ElevatorCallEventArgs(ushort floorNum, ElevatorCallDirections direction)
         {

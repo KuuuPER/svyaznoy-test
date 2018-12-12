@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SvyaznoyTestProject.PublishSubscriber
+namespace SvyaznoyTestProject
 {
     class PublishSubscriber<T> where T: EventArgs
     {
