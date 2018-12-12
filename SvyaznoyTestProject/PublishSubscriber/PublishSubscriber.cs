@@ -6,9 +6,19 @@ namespace SvyaznoyTestProject
     {
         public event EventHandler<T> OnChange;
 
-        public void Raise(T args)
+        public void Raise(object sender, T args)
         {
-            OnChange?.Invoke(this, args);
+            OnChange?.Invoke(sender, args);
+        }
+    }
+
+    class PublishSubscriber
+    {
+        public event EventHandler OnChange;
+
+        public void Raise(object obj)
+        {
+            OnChange?.Invoke(obj, null);
         }
     }
 }

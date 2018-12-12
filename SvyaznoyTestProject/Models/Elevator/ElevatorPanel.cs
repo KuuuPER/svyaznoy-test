@@ -37,13 +37,13 @@ namespace SvyaznoyTestProject.Models
         public void PushFloorButton(sbyte floorNum)
         {
             _floorButtons[floorNum].Push();
-            _floorButtonPushed.Raise(new ElevatorFloorButtonEventArgs(floorNum));
+            _floorButtonPushed.Raise(this, new ElevatorFloorButtonEventArgs(floorNum));
         }
 
         public void PushDoorButton(ElevatorDoorButtonTypes buttonType)
         {
             _doorButtons[buttonType].Push();
-            _doorButtonPushed.Raise(new ElevatorDoorButtonEventArgs(buttonType));
+            _doorButtonPushed.Raise(this, new ElevatorDoorButtonEventArgs(buttonType));
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using SvyaznoyTestProject.Models.Buttons;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace SvyaznoyTestProject.Models.ElevatorEventArgs
+namespace SvyaznoyTestProject.Models
 {
     class ElevatorCallEventArgs: EventArgs
     {

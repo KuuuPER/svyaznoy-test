@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SvyaznoyTestProject.Models
+﻿namespace SvyaznoyTestProject.Models
 {
     class PressureSensor
     {
-        public PressureSensor()
+        private PublishSubscriber<PressureChangeEventArgs> _pressureChange;
+        public PressureSensor(PublishSubscriber<PressureChangeEventArgs> pressureChange)
         {
+            _pressureChange = pressureChange;
         }
 
         public ushort Value { get; private set; }
@@ -15,6 +13,7 @@ namespace SvyaznoyTestProject.Models
         public void AddWeight(ushort weight)
         {
             Value += weight;
+            _pressureChange.Raise(this, new PressureChangeEventArgs(Value));
         }
     }
 }

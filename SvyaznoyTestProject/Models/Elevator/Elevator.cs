@@ -8,13 +8,21 @@ namespace SvyaznoyTestProject.Models
     {
         private ushort _maxWeight;
 
-        public Elevator(sbyte minfloors, sbyte maxfloors, ushort maxWeight)
+        public Elevator(ElevatorOptions options,
+            PublishSubscriber<ElevatorFloorButtonEventArgs> floorButtonPs,
+            PublishSubscriber<ElevatorDoorButtonEventArgs> doorButtonPs,
+            PublishSubscriber<PressureChangeEventArgs> pressureChangePs,
+            PublishSubscriber detectMovePs)
         {
-            this.Panel = new ElevatorPanel(minfloors, maxfloors);
-            this.PressureSensor = new PressureSensor();
-            this.DoorSensor = new DoorSensor();
+            this.Panel = new ElevatorPanel(
+                options.Minfloors,
+                options.Maxfloors,
+                floorButtonPs,
+                doorButtonPs);
+            this.PressureSensor = new PressureSensor(pressureChangePs);
+            this.DoorSensor = new DoorSensor(detectMovePs);
 
-            _maxWeight = maxWeight;
+            _maxWeight = options.MaxWeight;
         }
 
         public ElevatorPanel Panel { get; }
