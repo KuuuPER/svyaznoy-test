@@ -1,7 +1,7 @@
 ﻿using SvyaznoyTestProject.Models.Buttons;
 using System;
 
-namespace SvyaznoyTestProject.Models.ElevatorEventArgs
+namespace SvyaznoyTestProject.Models
 {
     class ElevatorDoorButtonEventArgs: EventArgs
     {

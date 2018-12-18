@@ -1,8 +1,5 @@
 ﻿using SvyaznoyTestProject.Models.Buttons;
-using SvyaznoyTestProject.Models.EventArgs;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SvyaznoyTestProject.Models
 {
@@ -26,7 +23,7 @@ namespace SvyaznoyTestProject.Models
 
         public void CallElevator(ElevatorCallDirections direction)
         {
-            _elevatorCall?.Raise(new ElevatorCallEventArgs(_floorNum, direction));
+            _elevatorCall?.Raise(this, new ElevatorCallEventArgs(_floorNum, direction));
         }
 
         public void ElevatorBeenCalled(ElevatorCallDirections direction)

@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace SvyaznoyTestProject.Models
 {
-    class ElevatorDoors
+    class Doors
     {
         private DoorsStates _doorsState;
         private PublishSubscriber _doorsPs;
 
-        public ElevatorDoors(PublishSubscriber doorsPs)
+        public Doors(PublishSubscriber doorsPs)
         {
             _doorsState = DoorsStates.Closed;
             _doorsPs = doorsPs;

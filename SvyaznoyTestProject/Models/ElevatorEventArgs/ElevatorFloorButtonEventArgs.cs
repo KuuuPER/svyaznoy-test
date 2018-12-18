@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SvyaznoyTestProject.Models.ElevatorEventArgs
+namespace SvyaznoyTestProject.Models
 {
     class ElevatorFloorButtonEventArgs: EventArgs
     {
@@ -9,6 +9,6 @@ namespace SvyaznoyTestProject.Models.ElevatorEventArgs
             Floor = floor;
         }
 
-        public ushort Floor { get; }
+        public sbyte Floor { get; }
     }
 }
