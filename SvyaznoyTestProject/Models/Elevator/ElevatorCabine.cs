@@ -43,6 +43,8 @@ namespace SvyaznoyTestProject.Models
 
         private Doors _doors;
 
+        public DoorsStates DoorsState => _doors.DoorsState;
+
         public async Task CloseDoor()
         {
             await this._doors.CloseDoors();

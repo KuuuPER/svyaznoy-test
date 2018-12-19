@@ -5,51 +5,48 @@ namespace SvyaznoyTestProject.Models
 {
     class ElevatorEngine
     {
-        private volatile byte _targetStage;
+        PublishSubscriber<ElevatorMoveEventArgs> _elevatorMovePs;
+        PublishSubscriber<ElevatorStageChangedEventArgs> _elevatorStageChangePs;
 
         public ElevatorEngine(
             PublishSubscriber<ElevatorMoveEventArgs> elevatorMovePs,
             PublishSubscriber<ElevatorStageChangedEventArgs> elevatorStageChangePs)
         {
+            _elevatorMovePs = elevatorMovePs;
+            _elevatorStageChangePs = elevatorStageChangePs;
+
             CurrentStage = 0;
         }
 
         public byte CurrentStage { get; private set; }
 
         public event EventHandler<ElevatorStageChangedEventArgs> ElevatorStageChanged;
-        
 
-        public void MoveToStage(byte targetStage)
+        public async Task MoveToStage(byte targetStage)
         {
-            _targetStage = targetStage;
-            Task.Factory.StartNew(async () =>
+            await Task.Factory.StartNew(() =>
              {
-                 if (CurrentStage > _targetStage)
+                 if (CurrentStage > targetStage)
                  {
-                     for (int i = 0; i < CurrentStage - _targetStage; i++)
+                     for (int i = 0; i < CurrentStage - targetStage; i++)
                      {
                          Console.WriteLine("Движемся вниз...");
-                         await Task.Delay(3000);
+                         Task.Delay(3000).Wait();
 
-                         ElevatorStageChanged?.Invoke(this, new ElevatorStageChangedEventArgs(CurrentStage, MoveDirections.Down));
+                         _elevatorStageChangePs?.Raise(this, new ElevatorStageChangedEventArgs(--CurrentStage, MoveDirections.Down));
                      }
                  }
                  else
                  {
-                     var count = CurrentStage - _targetStage;
-                     for (int i = 0; i < _targetStage - CurrentStage; i++)
+                     var count = CurrentStage - targetStage;
+                     for (int i = 0; i < targetStage - CurrentStage; i++)
                      {
                          Console.WriteLine("Движемся вверх...");
-                         await Task.Delay(3000);
-                         ElevatorStageChanged?.Invoke(this, new ElevatorStageChangedEventArgs(++CurrentStage, MoveDirections.Up));
+                         Task.Delay(3000).Wait();
+                         _elevatorStageChangePs?.Raise(this, new ElevatorStageChangedEventArgs(++CurrentStage, MoveDirections.Up));
                      }
                  }
              });
-        }
-
-        public void ChangeTargetStage(byte targetStage)
-        {
-            _targetStage = targetStage;
         }
     }
 }

@@ -17,8 +17,8 @@ namespace SvyaznoyTestProject.Models
         public Task CloseDoors()
         {
             Console.WriteLine("Осторожно, двери закрываются...");
-            return Task.Factory.StartNew(async () => {
-                await Task.Delay(2000);
+            return Task.Factory.StartNew(() => {
+                Task.Delay(2000).Wait();
                 _doorsState = DoorsStates.Closed;
                 _doorsPs.Raise(this);
             });
@@ -27,8 +27,8 @@ namespace SvyaznoyTestProject.Models
         public Task OpenDoors()
         {
             Console.WriteLine("Двери открываются...");
-            return Task.Factory.StartNew(async () => {
-                await Task.Delay(2000);
+            return Task.Factory.StartNew(() => {
+                Task.Delay(2000).Wait();
                 _doorsPs.Raise(this);
             });
         }

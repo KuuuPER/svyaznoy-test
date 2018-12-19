@@ -1,16 +1,18 @@
-﻿using System;
-
-namespace SvyaznoyTestProject.Models
+﻿namespace SvyaznoyTestProject.Models
 {
-    [Flags]
-    enum ElevatorStatuses: byte
+    struct ElevatorState
     {
-        DoorsOpened = 1 << 0,
-        DoorsClosed = 1 << 1,
-        Overload = 1 << 2,
-        MovingUp = 1 << 3,
-        MovingDown = 1 << 4,
-        Stopped = 1 << 5,
-        Awaiting = DoorsOpened | Stopped
+        public ElevatorState(byte currentStage, ElevatorStatuses status, DoorsStates doorsState)
+        {
+            CurrentStage = currentStage;
+            Status = status;
+            DoorsState = doorsState;
+        }
+
+        public byte CurrentStage { get; }
+
+        public ElevatorStatuses Status { get; }
+
+        public DoorsStates DoorsState { get; }
     }
 }
